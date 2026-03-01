@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "headshot-upload"
+version = "1.0.0"
+description = "CLI tool to upload JPEG headshots to Salesforce and associate them with Contact records."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Marimuthu V S"}
+]
+
+dependencies = [
+    "click>=8.1",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "responses>=0.24",
+]
+
+[project.scripts]
+headshot-upload = "headshot_upload.cli.commands:cli"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["headshot_upload*"]
